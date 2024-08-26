@@ -1,14 +1,23 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useNavigate } from "react-router-dom" 
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import {Form, Button, Card, Alert } from 'react-bootstrap'
 export function Signin(){
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const [error, setError] = useState('')
+    const[loading, setLoading] = useState(false);
+
+    const navigate = useNavigate()
     const auth = getAuth()
-    const navigate =useNavigate()
     async function handleSignIn(e){
         e.preventDefault();
-        signInWithEmailAndPassword(auth,email,password)
+
+        setError('')
+        setLoading(true)
+
+        signInWithEmailAndPassword(auth,emailRef.current.value,passwordRef.current.value)
         .then((user) => {
             // Success...
             console.log(user)
@@ -16,15 +25,29 @@ export function Signin(){
         })
         .catch((error) => {
             // Error
+            setError('Failed to sign in to account')
             console.log(error)
         })
+        setLoading(false)
     }
-    return <div>
-        <h1>This is the sign in page</h1>
-        <form action="">
-            <input onChange={(e) => {setEmail(e.target.value)}} type="text" placeholder="Email" />
-            <input onChange={(e) => {setPassword(e.target.value)}} type="text" placeholder="Password" />
-            <button onClick={(e) => {handleSignIn(e)}}>Sign In</button>
-        </form>
+    return <div className="text-left w-100" style={{minWidth: "400px"}}>
+         <Card>
+            <Card.Body>
+            <h1 className="text-center mb-4">Sign In</h1>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form className="signUp" onSubmit={handleSignIn}>
+                <Form.Group id="email">
+                    <Form.Label >Email</Form.Label>
+                    <Form.Control className="mb-2" type="email" ref={emailRef} required/> 
+                </Form.Group>
+                <Form.Group id="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control className="mb-2" type="password" ref={passwordRef} required/> 
+                </Form.Group>
+                <Button disabled={loading} type="submit" className="w-100 text-center mt-2">Sign In</Button>
+            </Form>
+            </Card.Body>
+        </Card>
+        <div className="w-100 text-center mt-2">Don't have an account? Sign Up</div>
     </div>
 }

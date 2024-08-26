@@ -1,0 +1,16 @@
+.sidebarMenu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1019;
+    overflow: none;
+    width:40px;
+}
+.sideBarMenu-spacer-top{
+    margin-top: 40px;
+}
+
+.sideBarMenu-list{
+    list-style:none;
+    padding:15px;
+}

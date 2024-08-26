@@ -1,29 +1,60 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+import { useNavigate } from "react-router-dom"
+import {Form, Button, Card, Alert } from 'react-bootstrap'
 export function Signup(){
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
-    const [passwordConfirm,setPasswordConfirm] = useState('')
+
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const passwordConfirmRef = useRef()
+    const [error, setError] = useState('')
+    const[loading, setLoading] = useState(false);
+
+    const navigate = useNavigate()
     const auth = getAuth()
     async function handleSignup(e){
         e.preventDefault();
-        createUserWithEmailAndPassword(auth,email,password)
+        if(passwordConfirmRef.current.value !== passwordRef.current.value){
+            return setError('Passwords do not match')
+        }
+        setError('')
+        setLoading(true)
+        
+        createUserWithEmailAndPassword(auth,emailRef.current.value,passwordRef.current.value)
         .then((user) => {
             // Success...
             console.log(user)
+            navigate('/home')
         })
         .catch((error) => {
             // Error
+            setError('Failed to create an account')
             console.log(error)
         })
+        setLoading(false)
     }
-    return <div>
-        <h1>This is the sign up page</h1>
-        <form action="">
-            <input onChange={(e) => {setEmail(e.target.value)}} type="text" placeholder="Email" />
-            <input onChange={(e) => {setPassword(e.target.value)}} type="text" placeholder="Password" />
-            <input onChange={(e) => {setPasswordConfirm(e.target.value)}} type="text" placeholder="Confirm Password" />
-            <button onClick={(e) => {handleSignup(e)}}>Sign Up</button>
-        </form>
+    return <div className="text-left w-100" style={{minWidth: "400px"}}>
+        <Card>
+            <Card.Body>
+            <h1 className="text-center mb-4">Sign Up</h1>{console.log(auth.currentUser)}
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form className="signUp" onSubmit={handleSignup}>
+                <Form.Group id="email">
+                    <Form.Label >Email</Form.Label>
+                    <Form.Control className="mb-2" type="email" ref={emailRef} required/> 
+                </Form.Group>
+                <Form.Group id="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control className="mb-2" type="password" ref={passwordRef} required/> 
+                </Form.Group>
+                <Form.Group id="password-confirm">
+                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control className="mb-2" type="password" ref={passwordConfirmRef} required/> 
+                </Form.Group>
+                <Button disabled={loading} type="submit" className="w-100 text-center mt-2">Sign Up</Button>
+            </Form>
+            </Card.Body>
+        </Card>
+        <div className="w-100 text-center mt-2">Already have an account? Login</div>
     </div>
 }

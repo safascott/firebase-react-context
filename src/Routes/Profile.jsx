@@ -1,7 +1,7 @@
 import { signOut,getAuth } from "firebase/auth"
 import Topbar from "../Components/Navbar/Topbar";
 import SideBarMenu from "../Components/SidebarMenu/SidebarMenu";
-export function Home(){
+export function Profile(){
     const auth = getAuth()
     async function handleSignOut(){
         try{
@@ -13,7 +13,7 @@ export function Home(){
     return <div>
         <SideBarMenu></SideBarMenu>
         <Topbar></Topbar>
-        <h1>This is the Home page</h1>
+        <h1>This is the Profile page</h1>
         <button onClick={() => {handleSignOut()}}>Sign out</button>
     </div>
 }
