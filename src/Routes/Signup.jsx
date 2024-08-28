@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {Form, Button, Card, Alert } from 'react-bootstrap'
 export function Signup(){
 
@@ -55,6 +55,6 @@ export function Signup(){
             </Form>
             </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-2">Already have an account? Login</div>
+        <div className="w-100 text-center mt-2">Already have an account? <Link to='/signin'>Sign In</Link></div>
     </div>
 }

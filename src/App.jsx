@@ -6,6 +6,7 @@ import { Profile } from './Routes/Profile'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthContext } from './Context/AuthContext'
 import { Protected } from './Routes/Protected'
+import { Reset } from './Routes/Reset'
 import { Container, Navbar } from 'react-bootstrap'
 import Topbar from "./Components/Navbar/Topbar";
 import './App.css'
@@ -30,7 +31,12 @@ function App() {
     {
       path:"/signup",
       element:<Container><Topbar></Topbar><Signup></Signup></Container>
+    },
+    {
+      path:"/reset",
+      element:<Container><Topbar></Topbar><Reset></Reset></Container>
     }
+
   ])
 
   return (

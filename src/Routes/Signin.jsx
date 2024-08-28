@@ -1,5 +1,5 @@
 import { useState, useRef } from "react"
-import { useNavigate } from "react-router-dom" 
+import { Link, useNavigate } from "react-router-dom" 
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 import {Form, Button, Card, Alert } from 'react-bootstrap'
 export function Signin(){
@@ -8,6 +8,7 @@ export function Signin(){
     const passwordRef = useRef()
     const [error, setError] = useState('')
     const[loading, setLoading] = useState(false);
+    
 
     const navigate = useNavigate()
     const auth = getAuth()
@@ -45,9 +46,10 @@ export function Signin(){
                     <Form.Control className="mb-2" type="password" ref={passwordRef} required/> 
                 </Form.Group>
                 <Button disabled={loading} type="submit" className="w-100 text-center mt-2">Sign In</Button>
+                <div className="w-100 text-center mt-2">Forgot your password? <Link to='/reset'>Reset</Link></div>
             </Form>
             </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-2">Don't have an account? Sign Up</div>
+        <div className="w-100 text-center mt-2">Don't have an account? <Link to='/signup'>Sign Up</Link></div>
     </div>
 }
