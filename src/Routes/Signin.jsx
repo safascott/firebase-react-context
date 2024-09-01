@@ -1,13 +1,15 @@
 import { useState, useRef } from "react"
-import { useNavigate } from "react-router-dom" 
+import { Link, useNavigate } from "react-router-dom" 
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 import {Form, Button, Card, Alert } from 'react-bootstrap'
+import logo from '../assets/logo.png';
 export function Signin(){
 
     const emailRef = useRef()
     const passwordRef = useRef()
     const [error, setError] = useState('')
     const[loading, setLoading] = useState(false);
+    
 
     const navigate = useNavigate()
     const auth = getAuth()
@@ -33,7 +35,8 @@ export function Signin(){
     return <div className="text-left w-100" style={{minWidth: "400px"}}>
          <Card>
             <Card.Body>
-            <h1 className="text-center mb-4">Sign In</h1>
+            <img className="logo" src={logo} />
+            <h2 className="text-center mb-4">Website<br></br>Personalization</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form className="signUp" onSubmit={handleSignIn}>
                 <Form.Group id="email">
@@ -45,9 +48,10 @@ export function Signin(){
                     <Form.Control className="mb-2" type="password" ref={passwordRef} required/> 
                 </Form.Group>
                 <Button disabled={loading} type="submit" className="w-100 text-center mt-2">Sign In</Button>
+                <div className="w-100 text-center mt-2">Forgot your password? <Link to='/reset'>Reset</Link></div>
             </Form>
             </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-2">Don't have an account? Sign Up</div>
+        <div className="w-100 text-center mt-2">Don't have an account? <Link to='/signup'>Get Started</Link></div>
     </div>
 }
