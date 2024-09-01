@@ -2,6 +2,7 @@ import { useState, useRef } from "react"
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 import { Link, useNavigate } from "react-router-dom"
 import {Form, Button, Card, Alert } from 'react-bootstrap'
+import logo from '../assets/logo.png';
 export function Signup(){
 
     const emailRef = useRef()
@@ -36,7 +37,9 @@ export function Signup(){
     return <div className="text-left w-100" style={{minWidth: "400px"}}>
         <Card>
             <Card.Body>
-            <h1 className="text-center mb-4">Sign Up</h1>{console.log(auth.currentUser)}
+            <img className="logo" src={logo} />
+            <h2 className="text-center mb-4">Website<br></br>Personalization</h2>
+            {console.log(auth.currentUser)}
             {error && <Alert variant="danger">{error}</Alert>}
             <Form className="signUp" onSubmit={handleSignup}>
                 <Form.Group id="email">
@@ -51,7 +54,7 @@ export function Signup(){
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control className="mb-2" type="password" ref={passwordConfirmRef} required/> 
                 </Form.Group>
-                <Button disabled={loading} type="submit" className="w-100 text-center mt-2">Sign Up</Button>
+                <Button disabled={loading} type="submit" className="w-100 text-center mt-2">Get Started</Button>
             </Form>
             </Card.Body>
         </Card>

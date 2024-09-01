@@ -18,13 +18,13 @@ function SideBarMenu(){
                             </Link>
                         </li>
                         <li className="nav-item text-white fs-4">
-                            <a href="#" className="nav-link text-white fs-5" aria-current="page">
+                            <Link to="/target" className="nav-link text-white fs-5" aria-current="page">
                                 <OverlayTrigger
                                 placement="right"
-                                overlay={<Tooltip id="tooltip1">Home</Tooltip>}>
+                                overlay={<Tooltip id="tooltip1">Target Accounts</Tooltip>}>
                                 <i className='bi bi-broadcast'></i>
                                 </OverlayTrigger>
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item text-white fs-4">
                             <a href="#" className="nav-link text-white fs-5" aria-current="page">
@@ -49,7 +49,7 @@ function SideBarMenu(){
                             <a href="#" className="nav-link text-white fs-5" aria-current="page">
                                 <OverlayTrigger
                                 placement="right"
-                                overlay={<Tooltip id="tooltip1">Account Settings</Tooltip>}>
+                                overlay={<Tooltip id="tooltip1">Company Settings</Tooltip>}>
                                 <i className='bi bi-gear'></i>
                                 </OverlayTrigger>
                             </a>
