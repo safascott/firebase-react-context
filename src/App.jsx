@@ -4,6 +4,7 @@ import { Signup } from './Routes/Signup'
 import { Home } from './Routes/Home'
 import { Target } from './Routes/Target'
 import { Profile } from './Routes/Profile'
+import { Personalization } from './Routes/Personalization'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { AuthContext } from './Context/AuthContext'
 import { Protected } from './Routes/Protected'
@@ -24,6 +25,10 @@ function App() {
     {
       path:"/target",
       element:<Protected><Container><Target/></Container></Protected>
+    },
+    {
+      path:"/personalization",
+      element:<Protected><Container><Personalization/></Container></Protected>
     },
     {
       path:"/profile",

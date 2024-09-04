@@ -27,13 +27,13 @@ function SideBarMenu(){
                             </Link>
                         </li>
                         <li className="nav-item text-white fs-4">
-                            <a href="#" className="nav-link text-white fs-5" aria-current="page">
+                            <Link to="/personalization" className="nav-link text-white fs-5" aria-current="page">
                                 <OverlayTrigger
                                 placement="right"
                                 overlay={<Tooltip id="tooltip1">Personalization</Tooltip>}>
                                 <i className='bi bi-calendar2'></i>
                                 </OverlayTrigger>
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item text-white fs-4">
                             <a href="#" className="nav-link text-white fs-5" aria-current="page">
