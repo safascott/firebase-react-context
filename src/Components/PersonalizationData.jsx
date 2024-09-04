@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../firebase'; // Add this line prevent firebase not loading error
 import { getFirestore, collection, getDocs, orderBy, query,limit } from "firebase/firestore";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 function visitDate(timestamp, format){
      if(!timestamp){
@@ -27,13 +29,13 @@ function visitDate(timestamp, format){
       return year+'-'+month+'-'+day;     
 }
 
-function Visitors(){
+function Personalization(){
 
     let [storedValues, setStoredValues] = useState([]);
     const db = getFirestore();
 
     const fetchDataFromFirestore = async () => {
-        const collection_ref = collection(db, "visitors")
+        const collection_ref = collection(db, "ipPersonalization")
         const q = query(collection_ref, orderBy("time", "desc"), limit(100))
         const querySnapshot = await getDocs(q);
         //const querySnapshot = await getDocs(collection(db, "visitors"));
@@ -41,7 +43,7 @@ function Visitors(){
         querySnapshot.forEach((doc) => {
             temporaryArr.push(doc.data());
         });
-
+        /*
         const rowItems = temporaryArr.map((row, index) =>
             <tr key={index}>
                 
@@ -52,29 +54,26 @@ function Visitors(){
                 <td  scope="row">{visitDate(row.time, 'time')}</td>
             </tr>
         );
-        setStoredValues(rowItems);
+        */
+
+        setStoredValues(temporaryArr);
+        
     };
     useEffect(() => {
         fetchDataFromFirestore();
       }, []);
 
-    return (<div className='visitor-table'>
-    <table className="table table-striped" style={{'textAlign':'left', fontSize:'small'}}>
-    <thead>
-        <tr>
+    return (<div>
+      <h3>Personalization{console.log(storedValues)}</h3>
+      <ButtonGroup aria-label="Basic example" size="sm">
+        <Button variant="secondary" active>IP Based</Button>
+        <Button variant="secondary" disabled>UTM</Button>
         
-        <th scope="col">Industry</th>
-        <th scope="col">Domain</th>
-        <th scope="col">IP</th> 
-        <th scope="col">Date</th> 
-        <th scope="col">Time</th> 
-        </tr>
-    </thead>
-    <tbody>
-        {storedValues}
-    </tbody>
-    </table>
+        <Button variant="secondary" disabled>Industry</Button>
+        <Button variant="secondary" disabled>Company</Button>
+        
+    </ButtonGroup>
     </div>
     )          
 }
-export default Visitors
+export default Personalization
