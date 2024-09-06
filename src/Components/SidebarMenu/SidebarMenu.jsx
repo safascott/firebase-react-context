@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 function SideBarMenu(){
     return (
         <div className="sidebarMenu">
-            <div className="row">
-                <div className="bg-dark col-auto min-vh-100">
+            <div className="row" style={{backgroundColor:'#000'}}>
+                <div className="col-auto min-vh-100" style={{backgroundColor:'#000'}}>
                 <div className="sideBarMenu-spacer-top"></div>
                     <ul className="sideBarMenu-list">                      
                         <li className="nav-item text-white fs-4">

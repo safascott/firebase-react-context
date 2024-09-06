@@ -4,6 +4,6 @@ export function Home(){
     return <div>
         <SideBarMenu></SideBarMenu>
         <Topbar></Topbar>
-        <h1>Dashboard</h1>
+        <h3>Dashboard</h3>
     </div>
 }
