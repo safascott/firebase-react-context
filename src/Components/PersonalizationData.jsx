@@ -4,10 +4,12 @@ import { getFirestore, collection, getDocs, orderBy, query,limit } from "firebas
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from 'react-bootstrap/Form';
+import { CreatePersonalization } from './CreatePersonalization';
+
 
 
     function Personalization(){
-
+      const [modalShow, setModalShow] = React.useState(false);
         let [storedValues, setStoredValues] = useState([]);
         const db = getFirestore();
 
@@ -89,11 +91,9 @@ import Form from 'react-bootstrap/Form';
         <Button variant="secondary" disabled>All</Button>
         <Button variant="secondary" disabled>Industry</Button>
         <Button variant="secondary" disabled>Company</Button>
-        <Button variant="secondary" disabled>Geolocation</Button>
+
         <Button variant="secondary" active>IP Based</Button>
         <Button variant="secondary" disabled>UTM</Button>
-        
-        
         <Button variant="secondary" disabled>Company</Button>
     </ButtonGroup>
     <table className="table table-striped" style={{'textAlign':'left', fontSize:'small'}}>
@@ -112,6 +112,10 @@ import Form from 'react-bootstrap/Form';
           }
       </tbody>
     </table>
+    <CreatePersonalization
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
     )          
 }

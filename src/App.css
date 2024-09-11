@@ -1,7 +1,10 @@
 #root {
+  /*
   max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
+  */
+  width:100%;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -60,4 +63,35 @@
   height: 90vH; 
   width:100%;
   margin-top: 40px;
+}
+
+.visitor-ip:hover{
+  color:#747bff;
+  cursor: pointer;
+}
+
+.pages-table{
+  overflow-y: scroll; 
+  height: 100vH; 
+  width:100%;
+}
+.pages-frame{
+  margin-top: 46px;
+  margin-left: 46px;
+  height: calc(100% - 46px); 
+  width:calc(100% - 46px);
+  position: relative;
+  z-index: 1;
+}
+
+.pages-create-personalization{
+  position: absolute;
+  top:60px;
+  right: 60px;
+  background-color: #fff;
+  opacity: 0.8;
+  z-index: 999;
+  width: 400px;
+  height: 600px;
+  border-radius: 5px;
 }

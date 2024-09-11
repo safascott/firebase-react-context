@@ -2,6 +2,7 @@
 import { Signin } from './Routes/Signin'
 import { Signup } from './Routes/Signup'
 import { Home } from './Routes/Home'
+import { Pages } from './Routes/Pages'
 import { Target } from './Routes/Target'
 import { Profile } from './Routes/Profile'
 import { Personalization } from './Routes/Personalization'
@@ -21,6 +22,10 @@ function App() {
     {
       path:"/home",
       element:<Protected><Container><Home/></Container></Protected>
+    },
+    {
+      path:"/pages",
+      element:<Protected><Pages/></Protected>
     },
     {
       path:"/target",

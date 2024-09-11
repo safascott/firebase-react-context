@@ -18,6 +18,15 @@ function SideBarMenu(){
                             </Link>
                         </li>
                         <li className="nav-item text-white fs-4">
+                            <Link to="/pages" className="nav-link text-white fs-5" aria-current="page">
+                                <OverlayTrigger
+                                placement="right"
+                                overlay={<Tooltip id="tooltip1">Pages</Tooltip>}>
+                                <i className='bi bi-window-plus'></i>
+                                </OverlayTrigger>
+                            </Link>
+                        </li>
+                        <li className="nav-item text-white fs-4">
                             <Link to="/target" className="nav-link text-white fs-5" aria-current="page">
                                 <OverlayTrigger
                                 placement="right"
